@@ -1,0 +1,28 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Search</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <h1>AI Search Module</h1>
+    <input type="text" id="query" placeholder="Search products..." />
+    <button onclick="search()">Search</button>
+    <div id="results"></div>
+
+    <script>
+        async function search() {
+            const query = document.getElementById('query').value;
+            const response = await fetch('http://localhost:5000/search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query, context: "All product data here" })
+            });
+            const data = await response.json();
+            document.getElementById('results').innerHTML = `Result: ${data.result}`;
+        }
+    </script>
+</body>
+</html>
