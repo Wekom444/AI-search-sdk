@@ -1,0 +1,26 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Search Demo</title>
+    <script>
+        async function searchProducts() {
+            const query = document.getElementById('query').value;
+            const response = await fetch('https://api.example.com/search', { // Replace with actual backend URL
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: query, context: "Example product descriptions" })
+            });
+            const result = await response.json();
+            document.getElementById('result').textContent = `Result: ${result.answer}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>AI Search Demo</h1>
+    <input type="text" id="query" placeholder="Type your search query">
+    <button onclick="searchProducts()">Search</button>
+    <p id="result">Result will appear here...</p>
+</body>
+</html>
